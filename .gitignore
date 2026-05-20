@@ -1,1 +1,12 @@
 .superpowers/
+.dart_tool/
+.idea/
+.metadata
+.flutter-plugins-dependencies
+*.iml
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+.packages
+build/
