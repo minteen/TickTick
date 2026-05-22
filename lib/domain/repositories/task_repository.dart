@@ -1,5 +1,4 @@
 import '../entities/task.dart';
-import '../entities/recurring_rule.dart';
 
 abstract class TaskRepository {
   Future<List<Task>> getTasksByList(int listId);
