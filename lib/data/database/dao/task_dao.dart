@@ -26,8 +26,9 @@ class TaskDao extends DatabaseAccessor<AppDatabase> with _$TaskDaoMixin {
   }
 
   Future<List<Task>> searchTasks(String query) {
+    final escaped = query.replaceAll('\\', '\\\\').replaceAll('%', '\\%').replaceAll('_', '\\_');
     return (select(tasks)
-      ..where((t) => t.title.like('%$query%') | t.note.like('%$query%'))
+      ..where((t) => t.title.like('%$escaped%') | t.note.like('%$escaped%'))
       ..orderBy([(t) => OrderingTerm(expression: t.updatedAt, mode: OrderingMode.desc)]))
         .get();
   }
@@ -55,9 +56,10 @@ class TaskDao extends DatabaseAccessor<AppDatabase> with _$TaskDaoMixin {
         title: Value(task.title),
         note: Value(task.note),
         priority: Value(task.priority),
-        dueDate: Value(task.dueDate),
+        dueDate: Value(nextDueDate),
         dueTime: Value(task.dueTime),
         recurringRuleId: Value(task.recurringRuleId),
+        sortOrder: Value(task.sortOrder),
       ));
     });
   }
