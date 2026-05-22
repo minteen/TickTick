@@ -24,7 +24,7 @@ mixin _$Task {
   int get listId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
-  int get priority => throw _privateConstructorUsedError;
+  Priority get priority => throw _privateConstructorUsedError;
   DateTime? get dueDate => throw _privateConstructorUsedError;
   String? get dueTime => throw _privateConstructorUsedError;
   bool get isCompleted => throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ abstract class $TaskCopyWith<$Res> {
       int listId,
       String title,
       String? note,
-      int priority,
+      Priority priority,
       DateTime? dueDate,
       String? dueTime,
       bool isCompleted,
@@ -128,7 +128,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       priority: null == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Priority,
       dueDate: freezed == dueDate
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
@@ -207,7 +207,7 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       int listId,
       String title,
       String? note,
-      int priority,
+      Priority priority,
       DateTime? dueDate,
       String? dueTime,
       bool isCompleted,
@@ -275,7 +275,7 @@ class __$$TaskImplCopyWithImpl<$Res>
       priority: null == priority
           ? _value.priority
           : priority // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Priority,
       dueDate: freezed == dueDate
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
@@ -336,7 +336,7 @@ class _$TaskImpl implements _Task {
       required this.listId,
       required this.title,
       this.note,
-      this.priority = 0,
+      this.priority = Priority.none,
       this.dueDate,
       this.dueTime,
       this.isCompleted = false,
@@ -365,7 +365,7 @@ class _$TaskImpl implements _Task {
   final String? note;
   @override
   @JsonKey()
-  final int priority;
+  final Priority priority;
   @override
   final DateTime? dueDate;
   @override
@@ -491,7 +491,7 @@ abstract class _Task implements Task {
       required final int listId,
       required final String title,
       final String? note,
-      final int priority,
+      final Priority priority,
       final DateTime? dueDate,
       final String? dueTime,
       final bool isCompleted,
@@ -516,7 +516,7 @@ abstract class _Task implements Task {
   @override
   String? get note;
   @override
-  int get priority;
+  Priority get priority;
   @override
   DateTime? get dueDate;
   @override

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ticktick/domain/enums/recurring_type.dart';
 
 part 'recurring_rule.freezed.dart';
 part 'recurring_rule.g.dart';
@@ -7,7 +8,7 @@ part 'recurring_rule.g.dart';
 class RecurringRule with _$RecurringRule {
   const factory RecurringRule({
     required int id,
-    required String type,
+    required RecurringType type,
     @Default(1) int interval,
     String? daysOfWeek,
     int? dayOfMonth,

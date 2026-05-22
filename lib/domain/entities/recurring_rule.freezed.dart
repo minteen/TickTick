@@ -21,7 +21,7 @@ RecurringRule _$RecurringRuleFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RecurringRule {
   int get id => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
+  RecurringType get type => throw _privateConstructorUsedError;
   int get interval => throw _privateConstructorUsedError;
   String? get daysOfWeek => throw _privateConstructorUsedError;
   int? get dayOfMonth => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $RecurringRuleCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String type,
+      RecurringType type,
       int interval,
       String? daysOfWeek,
       int? dayOfMonth,
@@ -85,7 +85,7 @@ class _$RecurringRuleCopyWithImpl<$Res, $Val extends RecurringRule>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as RecurringType,
       interval: null == interval
           ? _value.interval
           : interval // ignore: cast_nullable_to_non_nullable
@@ -120,7 +120,7 @@ abstract class _$$RecurringRuleImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String type,
+      RecurringType type,
       int interval,
       String? daysOfWeek,
       int? dayOfMonth,
@@ -157,7 +157,7 @@ class __$$RecurringRuleImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as RecurringType,
       interval: null == interval
           ? _value.interval
           : interval // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ class _$RecurringRuleImpl implements _RecurringRule {
   @override
   final int id;
   @override
-  final String type;
+  final RecurringType type;
   @override
   @JsonKey()
   final int interval;
@@ -260,7 +260,7 @@ class _$RecurringRuleImpl implements _RecurringRule {
 abstract class _RecurringRule implements RecurringRule {
   const factory _RecurringRule(
       {required final int id,
-      required final String type,
+      required final RecurringType type,
       final int interval,
       final String? daysOfWeek,
       final int? dayOfMonth,
@@ -273,7 +273,7 @@ abstract class _RecurringRule implements RecurringRule {
   @override
   int get id;
   @override
-  String get type;
+  RecurringType get type;
   @override
   int get interval;
   @override

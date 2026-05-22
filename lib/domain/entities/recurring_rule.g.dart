@@ -9,7 +9,7 @@ part of 'recurring_rule.dart';
 _$RecurringRuleImpl _$$RecurringRuleImplFromJson(Map<String, dynamic> json) =>
     _$RecurringRuleImpl(
       id: (json['id'] as num).toInt(),
-      type: json['type'] as String,
+      type: $enumDecode(_$RecurringTypeEnumMap, json['type']),
       interval: (json['interval'] as num?)?.toInt() ?? 1,
       daysOfWeek: json['daysOfWeek'] as String?,
       dayOfMonth: (json['dayOfMonth'] as num?)?.toInt(),
@@ -22,10 +22,17 @@ _$RecurringRuleImpl _$$RecurringRuleImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$RecurringRuleImplToJson(_$RecurringRuleImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'type': instance.type,
+      'type': _$RecurringTypeEnumMap[instance.type]!,
       'interval': instance.interval,
       'daysOfWeek': instance.daysOfWeek,
       'dayOfMonth': instance.dayOfMonth,
       'endDate': instance.endDate?.toIso8601String(),
       'maxCount': instance.maxCount,
     };
+
+const _$RecurringTypeEnumMap = {
+  RecurringType.daily: 'daily',
+  RecurringType.weekly: 'weekly',
+  RecurringType.monthly: 'monthly',
+  RecurringType.yearly: 'yearly',
+};

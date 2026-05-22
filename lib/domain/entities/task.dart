@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:ticktick/domain/enums/priority.dart';
 import 'recurring_rule.dart';
 
 part 'task.freezed.dart';
@@ -12,7 +13,7 @@ class Task with _$Task {
     required int listId,
     required String title,
     String? note,
-    @Default(0) int priority,
+    @Default(Priority.none) Priority priority,
     DateTime? dueDate,
     String? dueTime,
     @Default(false) bool isCompleted,

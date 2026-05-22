@@ -11,7 +11,8 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
       listId: (json['listId'] as num).toInt(),
       title: json['title'] as String,
       note: json['note'] as String?,
-      priority: (json['priority'] as num?)?.toInt() ?? 0,
+      priority: $enumDecodeNullable(_$PriorityEnumMap, json['priority']) ??
+          Priority.none,
       dueDate: json['dueDate'] == null
           ? null
           : DateTime.parse(json['dueDate'] as String),
@@ -45,7 +46,7 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'listId': instance.listId,
       'title': instance.title,
       'note': instance.note,
-      'priority': instance.priority,
+      'priority': _$PriorityEnumMap[instance.priority]!,
       'dueDate': instance.dueDate?.toIso8601String(),
       'dueTime': instance.dueTime,
       'isCompleted': instance.isCompleted,
@@ -59,3 +60,10 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'tagNames': instance.tagNames,
       'recurringRule': instance.recurringRule,
     };
+
+const _$PriorityEnumMap = {
+  Priority.none: 'none',
+  Priority.low: 'low',
+  Priority.medium: 'medium',
+  Priority.high: 'high',
+};
