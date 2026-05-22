@@ -20,6 +20,8 @@ dependencies:
   # Serialization
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
+  # Timezone
+  timezone: ^0.10.1
   # Notifications
   flutter_local_notifications: ^18.0.1
   # File operations
