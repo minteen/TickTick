@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../providers/init_provider.dart';
 import '../../providers/task_providers.dart';
 import '../widgets/task_tile.dart';
 import '../widgets/empty_state.dart';
@@ -10,6 +11,7 @@ class TodayPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(initProvider);
     final tasksAsync = ref.watch(todayTasksProvider);
 
     return Scaffold(
