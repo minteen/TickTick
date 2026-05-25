@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'presentation/today/today_page.dart';
+import 'presentation/calendar/calendar_page.dart';
 import 'presentation/lists/lists_page.dart';
 import 'presentation/lists/list_detail_page.dart';
 import 'presentation/search/search_page.dart';
@@ -13,13 +13,13 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: '/today',
+  initialLocation: '/calendar',
   routes: [
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
       builder: (context, state, child) => AppShell(child: child),
       routes: [
-        GoRoute(path: '/today', builder: (_, __) => const TodayPage()),
+        GoRoute(path: '/calendar', builder: (_, __) => const CalendarPage()),
         GoRoute(path: '/lists', builder: (_, __) => const ListsPage()),
         GoRoute(path: '/search', builder: (_, __) => const SearchPage()),
         GoRoute(path: '/settings', builder: (_, __) => const SettingsPage()),
@@ -52,7 +52,7 @@ class AppShell extends StatelessWidget {
 
   int _currentIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.path;
-    if (location.startsWith('/today')) return 0;
+    if (location.startsWith('/calendar')) return 0;
     if (location.startsWith('/lists')) return 1;
     if (location.startsWith('/search')) return 2;
     if (location.startsWith('/settings')) return 3;
@@ -66,11 +66,11 @@ class AppShell extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex(context),
         onDestinationSelected: (index) {
-          final routes = ['/today', '/lists', '/search', '/settings'];
+          final routes = ['/calendar', '/lists', '/search', '/settings'];
           context.go(routes[index]);
         },
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.today), label: 'Today'),
+          NavigationDestination(icon: Icon(Icons.calendar_month), label: 'Calendar'),
           NavigationDestination(icon: Icon(Icons.list_alt), label: 'Lists'),
           NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
           NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
