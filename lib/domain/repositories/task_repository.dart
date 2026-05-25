@@ -13,6 +13,8 @@ abstract class TaskRepository {
   Future<void> completeRecurringTask(int taskId, DateTime nextDueDate);
   Future<void> reorderTasks(int listId, List<int> taskIds);
   Future<List<Task>> getAllTasks();
+  Future<List<Task>> getTasksForDateRange(DateTime start, DateTime end);
+  Stream<List<Task>> watchTasksForDateRange(DateTime start, DateTime end);
   Stream<List<Task>> watchTasksByList(int listId);
   Stream<List<Task>> watchTodayAndOverdue();
 }

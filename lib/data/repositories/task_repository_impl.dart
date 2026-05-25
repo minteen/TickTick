@@ -120,6 +120,24 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
+  Future<List<Task>> getTasksForDateRange(DateTime start, DateTime end) async {
+    final List<db.Task> rows = await _db.taskDao.getTasksForDateRange(start, end);
+    return rows.map(_toEntity).toList();
+  }
+
+  @override
+  Stream<List<Task>> watchTasksForDateRange(DateTime start, DateTime end) {
+    return (_db.select(_db.tasks)
+      ..where((t) =>
+        t.dueDate.isSmallerOrEqualValue(end) &
+        t.dueDate.isBiggerOrEqualValue(start) &
+        t.parentId.isNull())
+      ..orderBy([(t) => drift.OrderingTerm(expression: t.dueDate, mode: drift.OrderingMode.asc)]))
+      .watch()
+      .map((rows) => rows.map(_toEntity).toList());
+  }
+
+  @override
   Future<List<Task>> getAllTasks() async {
     final List<db.Task> rows = await _db.select(_db.tasks).get();
     return rows.map((r) => _toEntity(r)).toList();

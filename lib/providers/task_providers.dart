@@ -82,3 +82,17 @@ class TaskActions {
     _ref.invalidate(taskDetailProvider(parentId));
   }
 }
+
+final calendarMonthTasksProvider =
+    FutureProvider.family<List<Task>, DateTime>((ref, month) {
+  final start = DateTime(month.year, month.month, 1);
+  final end = DateTime(month.year, month.month + 1, 0);
+  return ref.read(taskRepositoryProvider).getTasksForDateRange(start, end);
+});
+
+final calendarDateTasksProvider =
+    FutureProvider.family<List<Task>, DateTime>((ref, date) {
+  final start = DateTime(date.year, date.month, date.day);
+  final end = start.add(const Duration(days: 1));
+  return ref.read(taskRepositoryProvider).getTasksForDateRange(start, end);
+});

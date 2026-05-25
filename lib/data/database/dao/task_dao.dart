@@ -12,6 +12,16 @@ class TaskDao extends DatabaseAccessor<AppDatabase> with _$TaskDaoMixin {
         .get();
   }
 
+  Future<List<Task>> getTasksForDateRange(DateTime start, DateTime end) {
+    return (select(tasks)
+      ..where((t) =>
+        t.dueDate.isSmallerOrEqualValue(end) &
+        t.dueDate.isBiggerOrEqualValue(start) &
+        t.parentId.isNull())
+      ..orderBy([(t) => OrderingTerm(expression: t.dueDate, mode: OrderingMode.asc)]))
+        .get();
+  }
+
   Future<List<Task>> getSubtasks(int taskId) {
     return (select(tasks)..where((t) => t.parentId.equals(taskId))).get();
   }
